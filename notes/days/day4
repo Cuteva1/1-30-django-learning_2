@@ -1,0 +1,25 @@
+task1:  /portfoliyo url ma  portfolio page dekhaune
+step 1
+urls.py (myapp)
+url pattrens ma path
+path("portfolio/",portfolio),
+import garme portfolio garne
+
+step 2
+views.py(myapp)
+def portfolio(request):
+    return render(request, template_name='myapp/portfolio.html' )
+step 3
+myapp--> tempaltes--> myapp--> html file banaune
+portfolio.html
+
+<body>
+    <h1>
+        Hello this is portfolio page.
+    </h1>
+</body>
+
+step 4
+url ma root link pachi /portfolio garer enter garne
+---
+

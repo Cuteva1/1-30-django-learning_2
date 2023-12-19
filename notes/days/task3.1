@@ -1,0 +1,22 @@
+task 1
+root location ma
+/hello garda hello lekhne
+/world lekhda world garne
+
+ ans:
+
+ myapp/urls
+from django.urls import path
+from .views import hello,world
+
+urlpatterns = [
+
+    path("hello/", hello),
+    path("world/",world),
+
+ views.py(home)
+ def hello(request):
+    return HttpResponse("<h1> hello </h1>")
+
+def world(request):
+    return HttpResponse("<h1> world </h1>")

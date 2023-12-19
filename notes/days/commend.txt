@@ -1,0 +1,4 @@
+day2
+1. python manage.py startapp myapp
+
+2.

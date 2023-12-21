@@ -1,0 +1,17 @@
+There are three types of model relation:
+1. One-Many Relation
+2. One-One Relation
+3. Many-Many Relation
+
+
+1. One-Many Relation
+    If you have to group a group of items under a same roof then you can use One-Many relationship.
+    For example, MenuCategory and MenuItems, Students under a same Classroom, Participants under a same chatroom
+
+2. One-One Relation
+    If you have to maintain a unique relationship between two tables then you can user One-One Relationship.
+    For example, user and user profile, Country and Prime Minister etc.
+
+3. Many-Many Relation
+    If you have to link multiple objects of a table with multiple objects of another table then you can use
+    Many-Many relationship. For example: User and User Role.

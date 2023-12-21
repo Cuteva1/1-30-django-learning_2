@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from .models import Student
 
 # Create your views here.
 def hello_world(request):
@@ -49,5 +49,6 @@ def temp_inherit_features(request):
     return render(request, template_name='myapp/temp_inherit_features.html')
 
 
-def temp_inherit_pricing(request):
-    return render(request, template_name='myapp/temp_inherit_pricing.html')
+def temp_inherit_pricing(request):  # pricing views
+    students= Student.objects.all()
+    return render(request, template_name='myapp/temp_inherit_pricing.html',context={"students":students})  #"students" chai key value and students chai table

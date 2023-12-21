@@ -1,0 +1,12 @@
+1. django-admin startproject <project_name>
+2. python manage.py startapp <app_name>
+
+3. python manage.py makemigrations
+4. python manage.py migrate
+
+5.python manage.py createsuperuser  #12/19
+
+6.python manage.py shell (django cmd shell open hunchh)
+
+
+

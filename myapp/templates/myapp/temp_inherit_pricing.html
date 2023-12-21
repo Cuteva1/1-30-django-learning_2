@@ -2,4 +2,28 @@
 
 {% block content %}
     <h1>This is a pricing page</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">age</th>
+            <th scope="col">address</th>
+            <th scope="col">email</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.email }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -1,0 +1,83 @@
+
+1. ORM stands for Object Relational Mapping
+2. It is a way to query a database without having to write
+    raw SQL queries
+
+3. Some equivalent ORMs of raw sql queries
+    => INSERT INTO Student (name, age, email) VALUES ("Ram", 20, "r@email.com")  #raw query
+    => Student.objects.create(name="Ram", age=20, email="r@email.com")  #orm
+
+
+   => Select * from Student where id=1
+    => Student.objects.filter(id=1)
+
+===================
+python manage.py shell
+
+from myapp.models import Student
+
+Student.objects.create(name="Ram", age=20, email="r@email.com")
+
+from .models import Student
+========================
+Crud orms
+
+lets consider Student as a model
+
+Create:
+Student.objects.create(name="", age=, address ="" , email="")
+========================%=======================
+read:
+1. Student.objects.all()
+       ==> Gives all the student objects in Queryset
+       ==> Queryset is a list-like data type. but unlike list, Queryset are immutable  #   list mutable hunchh
+       ==> Queryset also supports index as list. but unlike list, nagative indexing is not possible in Queryset
+       Student[0] correct but Student[-2 ] not support
+
+2.Student.objects.filter(id=1)   # name search garda filter use garne
+        a.==> filetr() also
+        Student.object.filter(id=1)  # query set return garchh list ma ... dict jasto dekhchh but aaunna
+        Student.object.filter(address="KTM")
+        b.==>
+        Student.object.filter(id="us")  # queryset[]   # empty list aauchh
+
+Student.object.filter(id=1)  # query set return garchh list ma ... dict jasto dekhchh but aaunna
+Student.object.filter(id="us")  # queryset[]   # empty list aauchh
+==========================
+ 3.Student.objects.get(id=1)  # get ma uniq huna parchh(ph no age)
+ ==>  single object return garchh
+          Student.objects.get(id=1)  # list ma <student
+ ==> Student.objects.get(id=100)  # object does not exits
+
+ ==>Student.objects.get(address="ktm")  # mutiple cases
+            mutiple object return
+
+ # query set dedaina list bhitrako data dinchh
+ ===========
+ # query set ma . name laagdai na
+ student= student.object.filter(id=1)
+ student[0].name garne #
+
+===========
+student= student.object.get(id=1)
+student.name
+======================================%=======================
+=====================================%==========================
+update:
+==> update() method is used data in a table
+==> this update()
+all ra .filter ma lagchh ...bt get ma lagdaina
+
+1.Student.objects.all().update(age=30)
+2. Student.objects.filter(address="ktm").update(age=30)
+3. Student.objects.filter(id=1).update(name="Ram")
+
+===================%=============
+delate:
+==>delete() method is used to deete  a row or multiple rows in a table
+==>
+
+1. Student.objects.filter(address= "KTM")
+2. Student.objects.get(id= 1)
+3.
+

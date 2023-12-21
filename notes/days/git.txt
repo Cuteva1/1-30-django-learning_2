@@ -1,0 +1,15 @@
+for git
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git init
+
+ (venv) C:\Users\dell\PycharmProjects\Django1030>git add *
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git add .
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git commit -m "first commit"
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git branch -M main
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git remote add origin git@github.com:Cuteva1/dajgoNews.git
+
+(venv) C:\Users\dell\PycharmProjects\Django1030>git push -u origin main

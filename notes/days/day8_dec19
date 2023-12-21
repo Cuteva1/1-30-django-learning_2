@@ -1,0 +1,77 @@
+http://127.0.0.1:8000/temp-inherit/
+-----
+auth_group
+auth model ma group bhnane table banako
+
+
+make migration le migrations file create garchh 0001_initial.py
+
+migrate==> table create
+
+ctrl+r
+db ma
+myapp_student
+==================
+student table ma data kasari ralhne
+
+1. admin pannel
+2.ORM baat
+----
+1. admin pannel
+
+step 1.
+5.python manage.py createsuperuser  #12/19
+Username (leave blank to use 'dell'):
+Email address: a@a.com
+pp:
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+
+python manage.py runserver
+------------
+step 2.
+myapp==> admin.py
+from .models import Student
+# Register your models here.
+admin.site.register(Student)
+
+model banauda sigular ma banayna parchh...
+admin pannel ma direct plural ma aauch
+
+========================
+2. ORM
+form baat details submit gareko db ma aaunu parne
+
+=> Student.objects.create(name="Ram", age=20, email="r@email.com")  #orm
+
+=> Student.objects.filter(id=1)
+
+exit()
+python manage.py runserver
+======
+pricing views ko table ko lagi
+
+views.py
+from .models import Student
+
+def temp_inherit_pricing(request):  # pricing views
+    students= Student.objects.all()  #yo thapeko and context={"students:students"}
+    return render(request, template_name='myapp/temp_inherit_pricing.html',context={"students:students"})
+
+
+context ma gayo aba templates ma run huna paryo
+=============*==================
+for student in student( loop)
+    print(s.name)  # sabai students ko list aauch
+=========*=============
+list
+s= students[0]
+s   # first row
+
+s.address # ktm   #row 1 ko
+s.name # alex
+============
+
+
+
+

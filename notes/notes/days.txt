@@ -1,7 +1,9 @@
-1. Django Project Setup
+1. Django Project Setup (Dec 10)
 2. Folders and files structure, apps, simple html rendering
 3. Template rendering
 4. Static rendering
 5. Template inheritance and navigation
 6. Context passing to templates
 7. DTL conditions, context processors & loop and Model Introduction
+8. Models and ORM introduction (Dec 19)
+9. CRUD ORMs and Model relations (Dec 20)

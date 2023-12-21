@@ -14,3 +14,4 @@ class Student(models.Model):  # class name later becomes the table name in the d
 #
 # Student.objects.all()
 # # Select * from student
+

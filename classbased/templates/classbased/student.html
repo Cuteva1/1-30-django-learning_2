@@ -1,0 +1,36 @@
+{% extends 'classbased/base.html' %}
+
+{% block content %}
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Roll No</th>
+            <th scope="col">Bio</th>
+            <th scope="col">Classroom</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.studentprofile.phone }}</td>
+            <td>{{ student.studentprofile.roll_no }}</td>
+            <td>{{ student.studentprofile.bio }}</td>
+            <td>{{ student.classroom.name }}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

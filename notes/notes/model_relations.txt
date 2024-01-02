@@ -3,15 +3,37 @@ There are three types of model relation:
 2. One-One Relation
 3. Many-Many Relation
 
+1. One-Many Relation #55 min
 
-1. One-Many Relation
     If you have to group a group of items under a same roof then you can use One-Many relationship.
     For example, MenuCategory and MenuItems, Students under a same Classroom, Participants under a same chatroom
+
+    Commend:
+    Student.objects.create(name="Jon", age=20, classroom=<obj>
+    Student.objects.create(name="Jon", age=20, ,classroom_id=1)  #36 min
+
+    Student.objects.filter(id=1).update(classroom_id=2)
+
+    student= Student.objects.get(id=1)
+    student.classroom_id
+    student.save()
+    student.classroom.name
+
+#releted_name
+    classroom=ClassRoom.objects.get(id=1)
+    classroom
+    students= classroom.classroom_students.all()
+    students
 
 2. One-One Relation
     If you have to maintain a unique relationship between two tables then you can user One-One Relationship.
     For example, user and user profile, Country and Prime Minister etc.
 
+     from myapp.models import ClassRoom, Student, StudentProfile
+
 3. Many-Many Relation
     If you have to link multiple objects of a table with multiple objects of another table then you can use
     Many-Many relationship. For example: User and User Role.
+
+
+

@@ -1,0 +1,28 @@
+14. Student Profile Create and Media settings (Dec 28)
+
+classroom select garda class room ma jane banaune
+
+myapp--> templates--> student.html
+<th scope="col">Classroom</th>  #add garne
+
+<td>{{ student.classroom.name }}</td>
+
+===================
+student.html ma studentprofile field add garne
+
+phone roll bio
+myapp --> models.py ma gayer herne
+=========
+views.py ma cathch garne data lai
+
+bio = request.POST.get("bio")
+        roll = request.POST.get("roll")
+        pp = request.FILES.get('pp')
+        return redirect("student")
+
+   import StudentProfile garne
+
+   StudentProfile.objects.create(phone=phone, bio=bio, roll=roll,student=student)
+----32min --- dekhi baaki
+student.html ma add garne
+

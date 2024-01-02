@@ -1,0 +1,20 @@
+views.py(forms)
+
+from django.shortcuts import render,redirect
+from myapp.models import ClassRoom
+# Create your views here.
+def add_classroom(request):
+    if request.method=="POST":
+        class_name=request.POST.get("classname")
+        ClassRoom.objects.create(name=class_name)
+        return redirect("add_classroom")
+    # get method
+    classrooms= ClassRoom.objects.all()  #db ma rakhne
+    return render(request,template_name= "forms/classroom.html", context={"classrooms": classrooms})
+
+urls.py(form)
+from django.urls import path
+from .views import add_classroom
+urlpatterns=[
+    path("add-classroom/", add_classroom, name="add_classroom")
+====================================================================

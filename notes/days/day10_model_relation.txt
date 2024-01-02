@@ -1,0 +1,69 @@
+12/21/2023  model_relation part 2
+
+python manage.py makemigrations
+error
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option:2
+python manage.py makemigrations
+python manage.py migrate
+------------------
+python manage.py shell
+from myapp.models import Student, ClassRoom
+
+ClassRoom.objects.create(name="One")
+<ClassRoom: ClassRoom object (1)>
+>>> ClassRoom.objects.create(name="Two")
+<ClassRoom: ClassRoom object (2)>
+>>> ClassRoom.objects.create(name="Three")
+<ClassRoom: ClassRoom object (3)>
+>>> ClassRoom.objects.create(name="Four")
+<ClassRoom: ClassRoom object (4)>
+>>>
+Student.objects.create(name="Jon", age=20, email="jon@email.com",address="KTM",classroom=classroom ) #object lekhne
+Student.objects.create(name="Jon", age=20, email="jon@email.com",address="KTM",classroom_id=4 )
+ classroom=ClassRoom.objects.get(id=3)
+>>> classroom
+<ClassRoom: ClassRoom object (3)>
+
+
+Student.objects.filter(id=1).update(name="Ram")
+
+
+>>> Student.objects.filter(address="BRT").update(classroom_id=3)
+1
+>>> Student.objects.filter(id=1).update(classroom_id=2)
+1
+>>> Student.objects.filter(id=2).update(classroom=classroom)
+1
+>>> classroom
+<ClassRoom: ClassRoom object (3)>
+-------------------------screen shot chh---------
+student bhanne object classroom id ma rakhne
+----------
+Student.objects.filter(id=2).update(classroom=classroom)
+
+student.classroom
+student.classroom_id=3
+stydent.save()
+---------------------25 min
+yasto students chahiyo jun chai class 3 ma padhchhan
+student.objects.filter(class
+--------------------example-------
+student= Student.objects.get(id=1)
+
+student.name
+'Alex'
+
+student.classroom
+<ClassRoom: ClassRoom object (2)>
+
+student.classroom.name
+'Two'
+====================   44 min
+classroom= ClassRoom.object
+classroom
+or
+relatedname use garer
+classroom.classroom_student.all()

@@ -15,7 +15,7 @@ Let's consider "Student" as a model
 
 Create:
 Student.objects.create(name="", age="", email="", address="")
-
+Student.objects.bluk_create()  #miltiple user create
 
 Read:
 1. Student.objects.all()
@@ -47,3 +47,4 @@ Delete:
 
 1. Student.objects.filter(address="KTM").delete()
 2. Student.objects.get(id=3).delete()
+

@@ -52,3 +52,13 @@ def temp_inherit_features(request):
 def temp_inherit_pricing(request):  # pricing views
     students= Student.objects.all()
     return render(request, template_name='myapp/temp_inherit_pricing.html',context={"students":students})  #"students" chai key value and students chai table
+
+
+    # students = Student.objects.all()
+    # return render(request, template_name='myapp/temp_inherit_pricing.html',
+    #               context={"students": students})
+
+
+def student(request):
+    students = Student.objects.all()
+    return render(request, template_name="myapp/student.html", context={"students": students})

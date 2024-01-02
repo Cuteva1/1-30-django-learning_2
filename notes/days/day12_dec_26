@@ -1,0 +1,136 @@
+step1:
+python manage.py startapp forms
+
+SETTING.PY
+----->
+goto  INSTALLED_APPS []
+
+PROJECT_APPS=["myapp","forms"]
+THIRD_PARTY_APPS=[]
+INSTALLED_APPS+=PROJECT_APPS + THIRD_PARTY_APPS
+---->
+step2:
+go to forms
+urls.py (create new file)
+___________*______________________
+step 2:
+urls.py
+from django.urls import path
+from .views import add_classroom,
+urlpattens=[
+    path("add-classroom/", add_classroom, name="add_classroom") #add_classroom function ma _ rakhne but classroom url ma - rakhne
+]
+from .views import add_classroom lekhne mathi
+-----------*------------------------
+step 3:
+forms--> views.py
+
+def add_classroom(request):
+    return render(request,template_name= "forms/classroom.html")
+--------------*--------------------
+step 4
+forms==>templates==>forms==>classroom.html
+
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+    <br>
+    <h1>Classrom</h1>h1>
+{% endblock %}
+===========
+step 5:
+main url ma link garne(root urls.py)
+path admin ko tala
+ path("crud/",include('forms.urls')),
+--------------*--------------------
+step6 python manage.py runserver
+===============**========================
+task 1
+classroom bhako thauma sabai class room aaunu paryo?
+ans:
+==================
+step 1
+views.py
+
+a) classrooms= ClassRoom.objects.all()
+c) return render(request,template_name= "forms/classroom.html", context={"classrooms": classrooms})
+--------
+b) from django.shortcuts import render
+from myapp.models import ClassRoom
+=============
+step 2:
+classroom.html
+a)---------
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+    <h1>Classroom</h1>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for class in classrooms %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ class.name }}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+b)--------------------
+classroom.html mai
+
+<form>
+name:
+<input>
+<button type="submit" class="btn btn-success">Submit</button>
+</form>
+<br>
+
+c)----------------
+<form method="post" action="{% url 'add_classroom'%}">
+#submit gareko data kun url ma send garne tesko name lekhne #name="add_classroom"
+
+<input name="classname">
+==========
+step3:
+submit gareko data lai kun views ma pathauna
+
+pathako data lai kasari catch garne/ kun verialble baat dine
+views.py
+def add_classroom(request):
+ # print(request.method)
+
+    if request.method=="POST":
+    #post method
+    class_name=request.POST.get("classname") # dict ko key ma data aauchh  # yo classname chai classname.html ko input name= classname ho 48 min
+    #form submit gare data aayo
+    ClassRoom.objects.create(name=class_name) #db ma rakhne (name=class_name) uta baat aako data
+    return redirect("add_classroom")  # submit garesi yai page ma aaune
+    # get method
+    classrooms= ClassRoom.objects.all()
+    return render(request,template_name= "forms/classroom.html", context={"classrooms": classrooms})
+
+------forms ma {% csrf_token %} rakhne------------
+===========example=========
+# student={"name":"jon","age":30}
+student.name # error
+# name= student['name']
+# name= student['roll'] #error
+# name= student.get("name")
+# name= student.get("roll")  #none
+=========================
+post request means
+frondend(fe) le backend(be) laai get request baat pathauchh
+tyo bela FE le  data banauchh eg name,age,address ect
+tyo data laai BE ma request send garchh pos request ma data band gareer pathauchh
+bE le validation check garer data correct bhaye table ma rakhchh
+==============task 2==========
+

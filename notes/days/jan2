@@ -1,0 +1,150 @@
+step1:
+To create new app
+
+step1:setting ma milaune
+
+step1:python manage.py runserver
+step1: main urls.py
+path("classbased/",include("classbased.urls")
+urls.py
+-----------
+chhuteko chh
+
+
+----------
+class HomeView(TemplateView):  #TemplateView bhanne clas lai HomeView laiinheritance gareko
+
+class A:
+    pass
+class B(A):
+    pass
+    -----------
+    https://ccbv.co.uk/  #go to weblink
+
+  ===================
+
+  14 min
+classbased
+  templates banaune(classbased)
+  base.html(classbased)
+  myapp-->base.html ko copy garer paste garne
+
+  href laai # banaune
+
+  ====crud bhanda tala classbased
+  myapp ko home.html
+
+  <h1><a href="{% url 'classbased_home' %}">Classbased</a></h1>
+
+  ==========
+  classbasde.html(classbased)
+{% extends 'classbased/base.html' %}
+
+{% block content %}
+    <h1>Classbased Home Page</h1>
+{% endblock %}
+
+=============
+class room add garne
+
+
+classbased==> base.html
+<li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Classroom</a>
+                </li>
+
+============
+urls.py (classbased)
+from .views import HomeView,ClassRoomView
+path("classroom/", ClassRoomView.as_view(), name="classbased_classroom"),
+=========
+views.py
+
+from django.shortcuts import render
+from django.views.generic import TemplateView,ListView
+from myapp.models import ClassRoom
+# Create your views here.
+class HomeView(TemplateView):
+    template_name = "classbased/home.html"
+
+class ClassRoom(CreateView):
+    template_name = "classbased/classroom.html"
+    queryset = ClassRoom.objects.all()
+    context_object_name = "classrooms" ##classrooms name ho  context={"classrooms ": classrooms}) agiko name, pachi ko url
+    #classrooms name
+    ===============
+
+    classroom.html(classbased)
+
+    {% extends 'classbased/base.html' %}
+    href ma #  rakhne
+
+ ===============
+base.html(classbased)
+href="{% url 'classbased_classroom' %}"
+
+=================
+student add garna list lyaune
+----------
+
+1)urls.py
+path("student/", StudentView.as_view(), name="classbased_student"),
+import StudentView
+
+2)views.py
+class StudentView(ListView):
+    template_name = "classbased/student.html"
+    queryset = Student.objects.all()
+    context_object_name = "students"
+    import Students
+
+3)student.html
+
+
+4)base.py
+ href="{% url 'classbased_student' %}"
+
+===================
+To create classroom
+step 1:
+class ClassRoomView(CreateView):
+    template_name = "classbased/classroom.html"
+    queryset = ClassRoom.objects.all()
+    context_object_name = "classrooms"
+
+step 2: create forms.py
+
+from django import forms
+from myapp.models import ClassRoom
+
+
+class ClassRoomView(forms.ModelForm):
+    class Meta:
+        model = ClassRoom
+        fields = ["name",]  # name class room ko name ho
+step 3:
+views.py
+from .forms import ClassRoomModelForm
+
+class ClassRoomView(CreateView):
+    form_class = ClassRoomModelForm
+step 4:
+
+forms.py
+from django import forms
+from myapp.models import ClassRoom
+
+
+class ClassRoomView(forms.ModelForm):
+    class Meta:
+        model = ClassRoom
+        fields = ["name",]
+step 5:
+
+Name:
+        <input name="classname"> hatako
+step 6:
+
+
+
+

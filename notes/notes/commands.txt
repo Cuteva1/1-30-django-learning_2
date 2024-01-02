@@ -7,6 +7,6 @@
 5.python manage.py createsuperuser  #12/19
 
 6.python manage.py shell (django cmd shell open hunchh)
-
+from myapp.models import Student
 
 

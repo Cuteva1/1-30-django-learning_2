@@ -6,9 +6,26 @@ There are three types of model relation:
 3. Many-Many Relation
 
 
-1. One-Many Relation
+1. One-Many Relation  #1hour
     If you have to group a group of items under a same roof then you can use One-Many relationship.
-    For example, MenuCategory and MenuItems, Students under a same Classroom, Participants under a same chatroom
+    For example, MenuCategory and MenuItems, Students under a same Classroom, Participants under a same chatroom(chat garda)
+
+        menu ma design garda k k topic hunchh
+        eg:
+        class Category:  #MenuCategory
+            title
+
+        class Food: #MenuItems
+            price
+            size
+            caategory = models.ForeignKey(Category)
+            # yasma price size ra kun category ko ho bhaner aauchh
+
+            food.objects.all().category=apitazer
+        eg:
+        Students under a same Classroom
+    Student table ra classroom table hunchh. tyo students classroom bhanne field ma chhutyaune ho. euta student kun class rom chh bhaner
+            Student.objects.filter(classroom=1) # class room 1 ko sabai student aauxx
 
 2. One-One Relation
     If you have to maintain a unique relationship between two tables then you can user One-One Relationship.
@@ -17,3 +34,25 @@ There are three types of model relation:
 3. Many-Many Relation
     If you have to link multiple objects of a table with multiple objects of another table then you can use
     Many-Many relationship. For example: User and User Role.
+
+        group==>admin==>create==>mannual user
+
+models.py
+class ClassRoom(models.Model):
+    name = models.CharField(max_length=10)
+
+class Student(models.Model):  # class name later becomes the table name in the database. appname_classname
+    name = models.CharField(max_length=20)
+    age = models.IntegerField()
+    address = models.CharField(max_length=50)
+    email = models.EmailField(max_length=20)
+    classroom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE, related_name="classroom_students")
+
+classroom ra student table
+student table ma classroom ko link gareko chh(multiple students sang)
+-------------
+on_delete=models.CASCADE means==>
+classroom delete huda student ma bhayeko student pani delete hunchh
+----------
+related_name="classroom_students
+reverse relation ko lagi use hunchh

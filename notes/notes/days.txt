@@ -7,3 +7,10 @@
 7. DTL conditions, context processors & loop and Model Introduction
 8. Models and ORM introduction (Dec 19)
 9. CRUD ORMs and Model relations (Dec 20)
+10. Model Relations (Dec 21)
+11. One-One and Many-Many Relation (Dec 22)
+12. Forms (Classroom Form) (Dec 26)
+13. Add Student Form (Dec 27)
+14. Student Profile Create and Media settings (Dec 28)
+15. Media => Image Upload and Student Detail (Dec 29)
+16. Student Update (Jan 1 2024)

@@ -10,10 +10,9 @@
             <th scope="col">Age</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Roll No</th>
-            <th scope="col">Bio</th>
-            <th scope="col">Classroom</th>
+            <th scope="col">Action</th>
+
+
         </tr>
         </thead>
         <tbody>
@@ -24,10 +23,17 @@
             <td>{{ student.age }}</td>
             <td>{{ student.email }}</td>
             <td>{{ student.address }}</td>
-            <td>{{ student.studentprofile.phone }}</td>
-            <td>{{ student.studentprofile.roll_no }}</td>
-            <td>{{ student.studentprofile.bio }}</td>
-            <td>{{ student.classroom.name }}</td>
+            <td>
+<!--                <a>Detail</a>-->
+<!--                <a>Update</a>-->
+<!--                <a>Delete</a>-->
+
+
+                <a class="btn btn-primary" href="{% url 'detail_student' student.id %}">Detail</a>
+                <a class="btn btn-success" href="{% url 'update_student' student.id %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'delete_student' student.id %}">Delete</a>
+            </td>
+
 
         </tr>
         {% endfor %}

@@ -1,0 +1,21 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if student.studentprofile.profile_picture %}
+        <img alt="pp" src="{{ student.studentprofile.profile_picture.url }}" style="height: 100px; width: 100px">
+    {% else %}
+    <img alt="pp" src="{% static 'forms/default.png' %}" style="height: 100px; width: 100px">
+    {% endif %}
+    <br><br>
+    <p><b>Name:</b>{{ student.name }}</p>
+    <p><b>Email:</b>{{ student.email }}</p>
+    <p><b>Age:</b>{{ student.age }}</p>
+    <p><b>Phone Number:</b>{{ student.studentprofile.phone }}</p>
+    <p><b>Address:</b>{{ student.address }}</p>
+    <p><b>Roll No.:</b>{{ student.studentprofile.roll_no }}</p>
+    <p><b>Classroom:</b>{{ student.classroom.name }}</p>
+    <p><b>Bio:</b>{{ student.studentprofile.bio }}</p>
+    <a class="btn btn-primary" href="{% url 'update_student' student.id %}">Update</a>
+    <a class="btn btn-danger" href="{% url 'student' %}">Cancel</a>
+{% endblock %}

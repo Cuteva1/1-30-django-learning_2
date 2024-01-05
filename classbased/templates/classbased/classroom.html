@@ -1,32 +1,38 @@
 {% extends 'classbased/base.html' %}
 
+
 {% block content %}
     <h1>Classroom</h1>
-    <a href="#" class="btn btn-primary" style=float:right>Add Student</a>
+    <a href="{% url 'add_student' %}" class=" btn btn-primary" style="float: right;">Add Student</a>
     <br>
     <form method="post" action="#">
-        {% csrf_token %}
+    {% csrf_token %}
         {{ form }} <br>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
-
-<table class="table">
+    <br>
+    <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        {% for class in classrooms %}
-        <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ class.name }}</td>
+        {% for classroom in classrooms %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ classroom.name }}</td>
+            <td>
+                <a class="btn btn-primary" href="#">Detail</a>
+                <a class="btn btn-success" href="{% url 'classbased_update_classroom' classroom.id %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'classbased_delete_classroom' classroom.id %}">Delete</a>
 
-        </tr>
+            </td>
+            </tr>
+
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

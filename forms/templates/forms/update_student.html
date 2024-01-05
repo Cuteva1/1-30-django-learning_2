@@ -1,0 +1,60 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+    <h1>Update Student</h1><br>
+    <form method="post" action="{% url 'update_student' student.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Name</label>
+                <input type="text" class="form-control" id="inputEmail4" value="{{ student.name }}" name="name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Email</label>
+                <input type="email" class="form-control" id="inputPassword4" value="{{ student.email }}" name="email">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" value="{{ student.address }}" name="address">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress2">Age</label>
+            <input type="number" class="form-control" id="inputAddress2" value="{{ student.age }}" name="age">
+        </div>
+
+          <div class="form-group col-md-4">
+              <label for="inputState">Classrooms</label>
+              <select id="inputState" class="form-control" name="classroom_id">
+                  {% for classroom in classrooms %}
+                      {% if classroom.name == student.classroom.name %}
+                      <option selected value="{{ classroom.id }}">{{ classroom.name }}</option>
+                      {% else %}
+                      <option value="{{ classroom.id }}">{{ classroom.name }}</option>
+                      {% endif %}
+                  {% endfor %}
+              </select>
+          </div>
+
+          <div class="form-group col-md-6">
+              <label for="inputAddress2">Phone</label>
+              <input type="text" class="form-control" id="inputAddress2" value="{{ student.studentprofile.phone }}" name="phone">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="inputAddress2">Bio</label>
+              <textarea class="form-control" id="inputAddress2" name="bio"></textarea>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="inputAddress2">Roll Number</label>
+              <input type="number" class="form-control" id="inputAddress2" value="{{ student.studentprofile.roll_no }}" name="roll">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="inputAddress2">Profile Picture</label>
+              <input type="file" class="form-control" name="pp">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-danger" href="{% url 'student' %}">Cancel</a>
+      <div style="height: 40px"></div>
+      </form>
+{% endblock %}

@@ -1,10 +1,13 @@
 
 from  django.http import JsonResponse
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView,DestroyAPIView,ListCreateAPIView,\
+RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from myapp.models import Student
+from myapp.models import Student,ClassRoom
 
-from .serializers import Studentserializers,StudentModelSerializer
+from .serializers import Studentserializers,StudentModelSerializer,ClassRoomModelSerialer,StudentModelSerializer
 
 
 def hello_world(request):
@@ -59,4 +62,61 @@ class StudentListAPIView(APIView):  #all table
         serializers = StudentModelSerializer(students, many=True)
         return Response(serializers.data)
 
+    # def post(self,request, *args, **kwargs):
+    #     print(request.data)
+    #     name= request.data.get("name")
+    #     age = request.data.get("age")
+    #     email = request.data.get("email")
+    #     address = request.data.get("address")
+    #     Student.objects.create(name=name,age= age,email=email,address=address)
+    #     return Response({
+    #         "meaasge": "Student Created Successfully"
+    #     })
 
+    def post(self,request, *args, **kwargs):
+        serializer= StudentModelSerializer(data = self.request.data) #deserialization
+        if serializer.is_valid():
+            name =serializer.validated_data['name']
+            age = serializer.validated_data['age']
+            email = serializer.validated_data['email']
+            address = serializer.validated_data['address']
+            Student.objects.create(name=name, age=age, email=email, address=address)
+            return Response({
+                "meaasge": "Student Created Successfully"
+            })
+        return Response({
+            "meaasge": "Invalid Request Data"
+        })
+
+class StudentListView(ListAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+class StudentCreateView(CreateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+class StudentUpdateView(UpdateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+class StudentDeleteView(DestroyAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+class StudentListCreateView(ListCreateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+
+class StudentRetriveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+class ClassRoomViewSet(ModelViewSet):
+    serializer_class = ClassRoomModelSerialer  # spelling milstake StudentModelSerializer
+    queryset = ClassRoom.objects.all()
+
+class StudentViewSet(ModelViewSet):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()

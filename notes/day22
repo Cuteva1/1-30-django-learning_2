@@ -1,0 +1,132 @@
+generic_view
+A) ======student_view==========
+step 1: urls.py
+path("generic-student-list/", StudentListView.as_view()),
+StudentListView import garne
+
+urlpatterns +=generic_urls
+==============
+step 2: views.py
+from rest_framework.generics import ListAPIView
+class StudentListView(ListAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+=========
+step 3: post man ma
+http://127.0.0.1:8000/api/generic-student-list/ (GET)
+
+==========classroom ko details dekhauna ko lagi===========
+ serializer.py
+step1:
+ClassRoom import
+step2: class model banaune
+class ClassRoomModelSerialer(serializers.ModelSerializer):
+    class Meta:
+        model = ClassRoom
+        fields = ["id", "name"]
+
+
+class StudentModelSerializer(serializers.ModelSerializer):
+    step 3:classroom  #yo banaune
+    classroom = ClassRoomModelSerialer()
+
+    class Meta:
+        model = Student
+        fields =["id", "name", "email", "address", "age","classroom"]
+===============
+B) ==========StudentCreateView=======student create garne===============
+step1: urls.py
+path("generic-student-create/", StudentCreateView.as_view()),
+
+step2: views.py
+CreateAPIView import
+class StudentCreateView(CreateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+step3: serializer.py
+    def get_fields(self):  # post
+        fields= super().get_fields()
+        request = self.context.get('request')
+        if request and request.method.lower()== 'get':
+            fields['classroom'] = ClassRoomModelSerialer()
+        return fields
+
+        # classroom = ClassRoomModelSerialer() comment garne
+
+step 4: post man ma
+http://127.0.0.1:8000/api/generic-student-creare/ (post)
+body ma
+ {
+
+        "name": "Rina Singh",
+        "email": "m@gmail.com",
+        "address": "BRT",
+        "age": 19,
+        "classroom": 8
+ }
+ send garne
+
+B) ==========StudentCreateView=======student create garne===============
+ step 1: urls.py
+path("generic-student-update/<int:pk>/", StudentUpdateView.as_view()),
+StudentUpdatetView import garne
+
+step 2: views.py
+from rest_framework.generics import UpdateAPIView
+class StudentUpdateView(UpdateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+step4: post man ma
+http://127.0.0.1:8000/api/generic-student-update/ (pathch)
+
+
+===============delete===========
+ step 1: urls.py
+path("generic-student-delete/<int:pk>/", StudentDeleteView.as_view()),
+StudentDeletetView import garne
+
+step 2: views.py
+import DestroyAPIView
+class StudentDeleteView(DestroyAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+step 3:
+http://127.0.0.1:8000/api/generic-student-list/  (delete)
+=================**======================
+
+D)==== Student data to List and Create View in same url (postman)===  eutai url ma get post garna milne======
+Student laai List ra CreateView ekai patak garna milchh
+
+step1 : urls.py
+import StudentListCreateView
+path("generic-student-list-create/", StudentListCreateView.as_view()),
+
+views.py
+import ListCreateAPIView
+class StudentListCreateView(ListCreateAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+E) ====Student data to Retrive Update Delete in same url (postman)
+
+step 1: urls.py
+path("generic-student-retrive-update-delete/<int:pk>/", StudentRetriveUpdateDeleteView.as_view()),
+import StudentRetriveUpdateDeleteView
+
+step 2 :views.py
+
+import RetrieveUpdateDestroyAPIView
+ class StudentRetriveUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+
+ step 3: postman
+ http://127.0.0.1:8000/api/generic-student-retrive-update-delete/20/
+
+ ( if delete student [delete])
+ (if view student [get])
+ (if update student [pathch])
+

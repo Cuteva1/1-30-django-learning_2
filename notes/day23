@@ -1,0 +1,73 @@
+19 min ==>eutai url baat crud garda you use garne
+============
+1) modelviewsset
+============
+A) classroommodelviewset
+step 1: urls.py
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register('classroom', ClassRoomViewSet)
+import ClassRoomViewSet
+urlpatterns +=generic_urls + router.urls
+step 2:
+class ClassRoomViewSet(ModelViewSet):
+    serializer_class = ClassRoomModelSerialer  # spelling milstake  #seleizer.py ma
+    queryset = ClassRoom.objects.all()
+from rest_framework.viewsets import ModelViewSet
+from myapp.models import Student,ClassRoom
+from .serializers import  ClassRoomModelSerialer
+step 3:
+postman
+http://127.0.0.1:8000/api/classroom/  (
+step 4:post garda body pani milaunu parchh
+http://127.0.0.1:8000/api/classroom/  (post)
+http://127.0.0.1:8000/api/classroom/12/  (patch) udate
+http://127.0.0.1:8000/api/classroom/11/  (delete)
+=============
+B) studentmodelviweset
+
+step 1:urls.py
+router.register('student', StudentViewSet)
+import StudentViewSet
+
+step 2: views.py
+import ModelViewSet
+import StudentModelSerializer
+
+class StudentViewSet(ModelViewSet):
+    serializer_class = StudentModelSerializer
+    queryset = Student.objects.all()
+step 3:
+http://127.0.0.1:8000/api/student/19/  post, get, pathch, delete
+================
+2) pagination
+==========
+A)
+step 1:setting.py
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK ={
+    "DEFAULT_PAGINATION_CLASS" : "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE ": 3
+}
+step 2:
+http://127.0.0.1:8000/api/student/  (GET)
+
+step 3: OUTPUT MA CHAI 3 WATA MATRAI DEKHAUNA MILCHH STUDENT LAAI
+
+step 4:
+
+======================
+#LimitOffsetPagination
+
+REST_FRAMEWORK ={
+
+    "DEFAULT_PAGINATION_CLASS" : "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 3  #default ma limit 3 ho  #euuta page ma kati data dekhaune
+}
+postman run
+  "next": "http://127.0.0.1:8000/api/student/?limit=3&offset=3",  #limit 5 off set 2 == 2,3,4,5  # 49 min
+  output:
+  limit ra offset change garna milchh
+
+

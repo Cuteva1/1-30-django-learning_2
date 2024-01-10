@@ -1,0 +1,50 @@
+post request(jan8)
+class StudentListAPIView(APIView):
+        def post(self, *args, **kwargs):  ##tupple ma rakhn\\chh    #*args,
+        **kwargs 11min
+            return Response({
+                "meaasge": "ok"
+            })
+=================
+postman baat data pathaune
+
+body ->raw ->json
+{
+    "name":"Ram",
+    "age":30,
+    "email": "r@r.com",
+    "address":"KTM"
+
+    views.py
+print(self.request.data) # post baat request ma data pathako
+=====
+31 min
+=========
+    def post(self,request, *args, **kwargs):
+        print(request.data)
+        name= request.data.get("name")
+        age = request.data.get("age")
+        email = request.data.get("email")
+        address = request.data.get("address")
+        Student.objects.create(name=name,age= age,email=email,address=address)
+        return Response({
+            "meaasge": "Student Created Successfully"
+        })
+        ====================
+deserilazation
+
+form baat pathako data validation garne
+
+post man baat aayeko data validate garchh serilazation le garchh
+
+    def post(self,request, *args, **kwargs):
+        serializer= StudentModelSerializer(data = self.request.data) #deserialization
+        if serializer.is_valid():
+            name =serializer.validated_data()['name']
+            age = serializer.validated_data()['age']
+            email = serializer.validated_data()['email']
+            address = serializer.validated_data()['address']
+            Student.objects.create(name=name, age=age, email=email, address=address)
+        return Response({
+            "meaasge": "Student Created Successfully"
+        })

@@ -1,0 +1,61 @@
+ Authentication and Premission (jan 11)
+
+ user pp rakher validation dinchh bhane Authentication user
+ permissiom --> certion kura ko kati kam garna pauchh bhanne ho
+ ---------------------
+ api baat login  garne but templates baat haina
+ ==========================
+
+REST_FRAMEWORK  ma
+step 1:
+ setting.py
+ "DEFAULT_AUTHENTICATION_CLASSES":[
+        "rest_framework.authentication.tokenAuthentication"
+    ]
+    "DEFAULT_PERMISSION_CLASSES":[
+        "rest_framework.permission.IsAuthenticated"
+    ]
+
+ step 2:
+ THIRD_PARTY_APPS=['rest_framework', "rest_framework.authtoken"] # "rest_framework.authtoken" thapeko
+
+ step 3: error aauchh
+ You have 3 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): authtoken.
+
+step 4: db ma table banchh
+python manage.py migrate
+================
+step 5: table ma data rakhne
+1) api/urls.py
+ path("login/", obtain_auth_token)
+from rest_framework.authtoken.views import obtain_auth_token
+
+2)views ma lekhna pardaina
+
+
+step 6)  ====api through login===============
+http://127.0.0.1:8000/api/login/   post
+
+3) postman na body and json ma lekhne
+{
+        "username": "admin",
+        "password": "admin"
+}
+possworld milyo bhane chai
+{
+    "token": "51b14dc9060cd7416a02f5853c247a71ef49252b"  #<token nu>
+}
+aauchh
+
+4) 41 min
+
+4)headers ma
+key ma                                  value ma
+Authorization                            Token <token nu>
+
+http://127.0.0.1:8000/api/student/  get garda student datials dinchh
+
+===========49 min==============
+
+
+

@@ -1,0 +1,7 @@
+Types of Authentication
+1. Basic Authentication
+2. Session Authentication  (templates project
+3. Token Authentication (api
+4. JWT Authentication (JSON WebToken) (BEnd ma data store hundai
+
+

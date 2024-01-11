@@ -29,7 +29,7 @@ INSTALLED_APPS = [
 ]
 
 PROJECT_APPS=["myapp","forms","classbased", "api"]
-THIRD_PARTY_APPS=['rest_framework']
+THIRD_PARTY_APPS=['rest_framework', "rest_framework.authtoken"]
 INSTALLED_APPS+=PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
@@ -120,5 +120,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK ={
     # "DEFAULT_PAGINATION_CLASS" : "rest_framework.pagination.PageNumberPagination",
     "DEFAULT_PAGINATION_CLASS" : "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 3
+    "PAGE_SIZE": 3,
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+        "rest_framework.authentication.TokenAuthentication"
+    ],
+    "DEFAULT_PERMISSION_CLASSES":[
+        "rest_framework.permissions.IsAuthenticated"
+    ]
 }
